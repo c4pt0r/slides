@@ -1,0 +1,36 @@
+Building a Distributed RDBMS using Raft
+
+dongxu
+PingCAP
+
+* Introduction
+
+* Why another RDBMS?
+
+What's wrong? What we need?
+
+- Scalability
+- ACID Transaction
+- SQL Support
+- Auto failover
+
+
+* Why not NoSQL?
+
+- No more workarounds, please.
+- No! SQL.
+
+* What is Raft? Why Raft?
+
+- distributed *consensus* algorithm
+- designed to be easy to understand
+- equivalent to Paxos in *fault-tolerance* and performance
+- includes a simple cluster *membership* change mechanism
+
+* No Silver Bullet!
+
+Latency vs Throughput
+
+* Consensus and Replication
+
+
