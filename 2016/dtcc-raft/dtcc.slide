@@ -33,4 +33,46 @@ Latency vs Throughput
 
 * Consensus and Replication
 
+* Master / Slave
 
+TBD
+
+* Quorum Model (WRN)
+
+TBD
+
+* Paxos
+
+TBD
+
+* How Raft work
+
+* Leader Election
+
+TBD
+
+* Log Replication
+
+TBD
+
+* Config Change
+
+TBD
+
+* DB + Raft
+
+* Architecture 
+
+TBD
+
+* Region Split / Merge
+
+TBD
+
+* MPP Query
+
+TBD
+
+* Transaction Manager
+
+TBD
