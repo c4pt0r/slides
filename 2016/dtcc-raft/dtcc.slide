@@ -41,62 +41,78 @@ Paxos is simpler than Replicated State Machine
 
 * Replication Model
 
-* Master / Slave
+* 1-Master / N-Slave
+
+Traditional RDBMS, e.g. MySQL, PostgreSQL ...
 
 *Advantage*
 
 - Easy to understand, easy to implement
-- Low communication cost
 
 *Disadvantage*
 
-- SPOF, low reliability.
-- Weak failover
+- SPOF, low reliability
+- Failover / Recovery is a nightmare
 
-Traditional RDBMS, e.g. MySQL, PostgreSQL ...
+And if you want a strong consistency guarantee, the latency will become unacceptable.
 
 * Gossip
 
+widely used for service / node discovery, or share configration over a large network.
+
 *Advantange*
 
-- 
+- Pure P2P model, easy to deploy
 
 *Disadvantage*
 
-- Eventual consistency, you would never know when all the nodes reach a consensus
+- You would never know when all the nodes reach a consensus, orz...
+- Implementation complexity
 
+* Quorum Model (WRN, Paxos, Raft)
 
-* Quorum Model (Paxos, Raft)
+*Advantange*
 
-Advantange
+- Auto failover
+- Acceptable latency
 
-Disadvantage
+*Disadvantage*
+
+- Implementation complexity
 
 * How It Works
 
-* Leader Election (1/2)
+* Leader election (1/3)
 
-Term
+At any given time, each node is either:
 
-Vote
+- *Leader*: handles all client operations, log replication
+- *Follower*: only respond to incoming RPCs
+- *Candidate*: wait for votes, new leader candidate
 
-* Leader Election (2/2)
+At most 1 viable leader at a time
+
+* Leader election (2/3)
+
+.image imgs/raft_fsm.png _ 1000
+
+* Leader election (3/3)
+
+Vote split
+
+* Log replication (1/3)
 
 TBD
 
-* Log Replication (1/3)
+* Log replication (2/3)
 
 TBD
 
-* Log Replication (2/3)
+* Log replication (3/3)
 
 TBD
 
-* Log Replication (3/3)
-
-TBD
-
-* Config Change
+* Config change
 
 TBD
 
@@ -114,9 +130,15 @@ TBD
 
 TBD
 
-* Region Split / Merge
+* Region split / merge
 
 TBD
+
+* Metadata manangment 
+
+Placement Driver
+
+Region lookup
 
 * MVCC
 
@@ -126,7 +148,7 @@ TBD
 
 TBD
 
-* GC
+* GC Problem
 
 TBD
 
