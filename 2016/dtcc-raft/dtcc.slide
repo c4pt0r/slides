@@ -90,7 +90,7 @@ At any given time, each node is either:
 - *Follower*: only respond to incoming RPCs
 - *Candidate*: wait for votes, new leader candidate
 
-At most 1 viable leader at a time
+At most 1 viable leader at a time!
 
 * Leader election (2/3)
 
@@ -98,7 +98,8 @@ At most 1 viable leader at a time
 
 * Leader election (3/3)
 
-Vote split
+- Term
+- Vote split
 
 * Log replication (1/3)
 
