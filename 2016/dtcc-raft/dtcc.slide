@@ -119,6 +119,16 @@ TBD
 
 * RDBMS & Raft
 
+* Raft vs Multi Raft
+
+*Raft* ( Etcd / Concil / ... )
+
+- Single RSM
+
+*Multi-Raft* ( CockroachDB / TiKV / ... )
+
+- Muiltiple RSM
+
 * TiDB Architecture 
 
 .image imgs/tidb_stack.png _ 800
@@ -126,10 +136,6 @@ TBD
 * TiKV Architecture
 
 .image imgs/tikv_stack.png _ 1000
-
-* Multi Raft
-
-TBD
 
 * Region split / merge
 
