@@ -1,9 +1,16 @@
 Building a Distributed RDBMS using Raft
 
 dongxu
-PingCAP
+CTO, PingCAP
+huang@pingcap.com
+http://github.com/pingcap
 
 * Introduction
+
+* Wait... Why not NoSQL?
+
+- No more workarounds, please
+- No! SQL
 
 * Why another RDBMS?
 
@@ -14,10 +21,7 @@ What's wrong? What we need?
 - SQL Support
 - Auto failover
 
-* Why not NoSQL?
-
-- No more workarounds, please
-- No! SQL
+*3S*: *Scalable* / *Survivable* / *SQL*
 
 * What is Raft? Why Raft?
 
@@ -67,14 +71,15 @@ widely used for service / node discovery, or share configration over a large net
 *Disadvantage*
 
 - You would never know when all the nodes reach a consensus, orz...
-- Implementation complexity
+- Implementation complexity, very hard to debug.
 
-* Quorum Model (WRN, Paxos, Raft)
+* Quorum Model (Paxos, Raft)
 
 *Advantange*
 
 - Auto failover
 - Acceptable latency
+- WRN, flexable consistency model
 
 *Disadvantage*
 
@@ -101,13 +106,38 @@ At most 1 viable leader at a time!
 - Term
 - Vote split
 
+* Log
+
+Log := {term, index, command}
+Each state machine processes the same series of commands thus arrives at the same series of states.
+
+.image imgs/log.png _ 550
+
+* Log replication
+
+The leader decides when it is safe to apply a log to the state machines
+
+- once a log has replicated it on a majority of the servers
+- such a log is called *committed*
+
 * Log replication (1/3)
 
-TBD
+.image imgs/log_replicate.png _ 1000
 
-* Log replication (2/3)
+Example of a simple, failure free commit: node 1 commits y ← 9 in term 1 at index 3.
 
-TBD
+* Log replication - Safty (2/3)
+
+Target: New leader always has the newest log
+
+    // On vote request
+    if A.maxTerm > B.maxTerm {
+        return A
+    } else if A.maxTerm < B.maxTerm {
+        return B
+    } else {
+        return A.maxIndex > B.maxIndex ? A : B
+    }
 
 * Log replication (3/3)
 
@@ -121,7 +151,7 @@ TBD
 
 * Raft vs Multi Raft
 
-*Raft* ( Etcd / Concil / ... )
+*Raft* ( Etcd / Consul / ... )
 
 - Single RSM
 
@@ -143,23 +173,26 @@ TBD
 
 * Metadata manangment 
 
-Placement Driver
-
 Region lookup
+
+-TiClient
+-Placement Driver
+-Etcd
+
 
 * MVCC
 
 TBD
 
-* Transaction Manager
+* Transaction Model (1/2)
+
+* Transaction Model (2/2)
+
+* GC
 
 TBD
 
-* GC Problem
-
-TBD
-
-* Query
+* MPP Query
 
 TBD
 
