@@ -8,7 +8,8 @@ mdc: true
 colorSchema: light
 ---
 
-# Database Scalability: All you need to know
+# Database Scalability
+# All you need to know
 
 Exploring the Cornerstone of Successful SaaS Platforms  
   
@@ -33,11 +34,11 @@ class: text-center
 ---
 
 
-![image](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/19/f880a105.jpg){width=300px lazy}
+![image](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/19/f880a105.jpg){width=350px lazy}
 
 👆Scale on disk but not on the compute
 
-![image](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/19/f25454c7.jpg){width=300px lazy}
+![image](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/19/f25454c7.jpg){width=350px lazy}
 
 👆Scale on different components but not the pipeline
 
@@ -74,24 +75,35 @@ class: text-center
 
 # When you gonna need it?
 
-## *Big tenant and small tenant*
+## *"I got both big tenants and small tenants"*
+<br>
+
+- For big tenants
+  - Scale-out without pain
+  - High isolation requirement
+- For small tenants
+  - Consolidate for saving cost
+  - Rapid Growth
 
 ---
-layout: center
-class: text-center
----
 
-![](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/19/3e9e8b67.jpg){width=600px lazy}
+# How TiDB tackle this
+
+- Scale-out
+- Isolation
+- Consolidation
 
 ---
 
 # Metadata Scalability
+
 - **Schema and Table Count Scalability:**
   - Supporting up to 1 million schemas/tables without performance loss
-  - **//Technical Implementation:** Metadata distributed storage, Lazy Schema Change
 - **DDL Operations on massive database objects:**
   - Handling multiple concurrent DDL operations for evolving database structures
-  - **//Technical Implementation:** Online DDL, Non-blocking Schema Changes
+
+## Why? That's the most intutive way to build a multi-tenant system
+
 ---
 
 # When you gonna need it?
