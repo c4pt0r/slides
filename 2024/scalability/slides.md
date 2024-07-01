@@ -147,10 +147,26 @@ Imagine if there's 10Mb in each table, that would be huge.
   - **Technical Implementation:** Resource Groups, Quotas and Priorities, Dynamic Resource Allocation
 
 ---
+layout: two-cols-header
+---
 
-# Scenario: Not all tenants (or application) are equal
+# Not all tenants are created equal
 
+::left::
 
+![](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/30/dcd11470.jpg){width=350px lazy}
+
+::right::
+
+* Big tenants
+  - High isolation requirement
+  - High resource consumption
+
+* Small tenants
+  - Low isolation requirement
+  - Low resource consumption
+
+* Fixed-size DB nodes are not flexible enough
 
 ---
 
@@ -179,8 +195,16 @@ Imagine if there's 10Mb in each table, that would be huge.
     - Supporting AI applications with scalable vector search capabilities
     - **Technical Implementation:** Vector Indexing, Approximate Nearest Neighbor Search (ANNS)
 ---
+layout: two-cols-header
+---
 
-# Slide 9: Conclusion
+::right::
+
+![](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/30/2ed67ca3.jpg){width=300px lazy}
+
+::left::
+
+# Conclusion
 - **Title:** Conclusion
 - **Content:** 
   - Summary of scalability categories
