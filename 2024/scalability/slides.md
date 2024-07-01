@@ -149,6 +149,15 @@ Imagine if there's 10Mb in each table, that would be huge.
 ---
 layout: two-cols-header
 ---
+# Why connection handling is important?
+
+::left::
+
+![](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/30/630bcb8b.jpg){width=320px lazy}
+
+---
+layout: two-cols-header
+---
 
 # Not all tenants are created equal
 
