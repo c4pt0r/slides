@@ -20,13 +20,13 @@ Exploring the Cornerstone of Successful SaaS Platforms
 
 # Is your system really scalable?
 
-What we're talking about when we talk about database scalability?
+What do we mean when we talk about database scalability?
 
 - A few TBs?
 
 ![image](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/19/b7367c08.jpg){width=400px lazy}
 
-**Scalability != Amount of Data**
+**Scalability != Amount of Data. It's a multi-dimensional-problem**
 
 ---
 layout: center
@@ -36,7 +36,7 @@ class: text-center
 
 ![image](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/19/f880a105.jpg){width=350px lazy}
 
-👆Scale on disk but not on the compute
+👆Scale on disk but not on compute
 
 ![image](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/19/f25454c7.jpg){width=350px lazy}
 
@@ -49,6 +49,7 @@ class: text-center
 - Fundamental principle:  **Expand from zero to many without design changes**
   - Little to no changes in code
   - No need to re-architect the system
+  - No downtime
 
 ![](https://dongxu-pics.s3.amazonaws.com/pub/2024/06/19/f3bad972.jpg){width=300px lazy}
 
@@ -59,7 +60,9 @@ class: text-center
 - **Data and Throughput**
 - **Metadata**
 - **Connection and Resource Control**
-- **Operational at scale**
+- **Operate at scale, ease of use**
+- **Self healing**
+- **Debugging and reasoning about correctness at scale**
 - **Advanced Features at scale**
 
 ---
@@ -70,6 +73,7 @@ class: text-center
   - Adding more nodes to handle increasing data volumes (e.g., TiDB can handle up to 1 PB)
 - **Throughput Scalability:**
   - Increasing QPS and TPS to handle more queries and transactions (e.g., e-commerce platform during sales events)
+  - Maintain SLAs as you scale your system
 
 ---
 
@@ -87,11 +91,11 @@ class: text-center
 
 ---
 
-# How TiDB tackle this
+# How does TiDB tackles this?
 
-- Scale-out
-- Isolation
-- Consolidation
+- Horizontal scale-out
+- Tenant isolation
+- Cluster consolidation
 
 ---
 
@@ -106,28 +110,28 @@ class: text-center
 
 ---
 
-# When you gonna need it?
+# When are you gonna need it?
 
 ## *"Every tenant should have their own tables!"*
 
 <br>
-Let's do a simple math: A SaaS company has 10000 users(tenants), for each user, system will create 100 table for them, the total table number would be:
+Let's do some simple math: A SaaS company has 10000 users(tenants), for each user, system will create 100 tables for them, the total numbner of tables will be:
 
 10000 * 100 = 1 Million Tables!
 
-And for each table, its metadata in database system is 10KB:
+If the metadata for each table in the database system is 10KB:
 
-10 KB per table * 1,000,000 = 10G
+10 KB per table * 1M Tables = 10G
 
-**Note that this is only the meta data**
+**Note that this is only the metadata**
 
-Image if there's even 10Mb in each table, that would be huge.
+Imagine if there's 10Mb in each table, that would be huge.
 
-10M * 1,000,000 = 10 TB
+10Mb * 1M tables = 10 TB
 
 ---
 
-# How TiDB solve this problem
+# How does TiDB solve this problem?
 
 - 
 
@@ -150,7 +154,7 @@ Image if there's even 10Mb in each table, that would be huge.
 
 ---
 
-# How TiBB solve this problem
+# How does TiDB solve this problem?
 
 ---
 

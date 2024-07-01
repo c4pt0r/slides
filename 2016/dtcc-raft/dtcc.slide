@@ -62,7 +62,7 @@ And if you want a strong consistency guarantee, the latency will become unaccept
 
 * Gossip
 
-widely used for service / node discovery, or share configration over a large network.
+Widely used for service / node discovery, or share configration over a large network.
 
 *Advantange*
 
@@ -141,11 +141,19 @@ Target: New leader always has the newest log
 
 * Log replication (3/3)
 
-TBD
+Snapshot
 
-* Config change
+* Configration change (1/2)
 
-TBD
+Problem: Disjoint majorities
+
+.image imgs/disjoint.png _ 600
+
+* Configration change (2/2)
+
+Solve: Single server membership change
+
+.image imgs/conf_change.png _ 600
 
 * RDBMS & Raft
 
@@ -167,32 +175,87 @@ TBD
 
 .image imgs/tikv_stack.png _ 1000
 
+* TiKV Architecture (Logical)
+
+.image imgs/tikv_stack2.png _ 500
+
+* Ti Project Overview
+
+.image imgs/overview.png _ 900
+
 * Region split / merge
 
-TBD
+.image imgs/split1.png _ 500
+
+* Region split / merge
+
+.image imgs/split2.png _ 650
+
+* Region split / merge
+
+.image imgs/split3.png _ 500
+
+* Region split / merge
+
+.image imgs/split4.png _ 750
+
+* Region split / merge
+
+.image imgs/split5.png _ 600
 
 * Metadata manangment 
 
 Region lookup
 
--TiClient
--Placement Driver
--Etcd
-
+- TiClient
+- Placement Driver
+- Etcd
 
 * MVCC
 
-TBD
+Take the advantage of LSM-Tree (Sorted Table)
+
+ Key Layout:
+ MetaKey(Key+0)              -->     Meta0
+ MetaKey(Key+1)              -->     Meta1
+ MetaKey(Key+2)              -->     Meta2
+ DataKey(Key+'startTs1')     -->     Value_V1
+ DataKey(Key+'startTs2')     -->     Value_V2
+ ...
+ 
+ Meta:
+ message MetaItem {
+     optional uint64 start_ts   = 1;
+     optional uint64 commit_ts  = 2;
+     optional bool   is_primary = 3; // for gc
+ }
 
 * Transaction Model (1/2)
 
+- 2 Phrase Lock / 2 Phrase Commit
+- Based on Percolator (Google, USENIX 2010) with some optimization
+- Distributed transaction manage (binding with data)
+
 * Transaction Model (2/2)
+
+- Latency vs Throughput
+- Lock cleaning
 
 * GC
 
-TBD
+Target: Clean useless data, unlock out-dated locks
+
+Biggest Problem: Suspensive locks.
+
+- Effcient
+- Correctness
 
 * MPP Query
 
-TBD
+- Predicate/Projection/Aggregation Pushdown (to Coprocessor)
+DNF->CNF, Example: A JOIN B WHERE A.id > 10 or (A.id < 5 and b.id < 5)
+
+- Cost Modal
+CPU / IO / Communication Cost / Number of rows in tables / Histogram ...
+
 
